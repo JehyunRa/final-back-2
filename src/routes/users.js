@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 module.exports = db => {
   router.get("/users/:id", (request, response) => {
-    // console.log(`users query starts now!`);
+    console.log(`users query starts now!`);
     db.query(
       `
       SELECT * FROM users 
@@ -10,9 +10,9 @@ module.exports = db => {
     `,
       [request.params.id]
     ).then(({ rows: days }) => {
-      // console.log('this is users response: ' + rows + days + response);
+      console.log('this is users response: ' + rows + days + response);
       response.json(days);
-    });
+    }).catch(error => console.log(error));
   });
 
   router.put("/users/updateliteracy", (request, response) => {
