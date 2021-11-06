@@ -10,7 +10,7 @@ module.exports = db => {
     `,
       [request.params.id]
     ).then(({ rows: days }) => {
-      console.log('this is users response: ' + rows + days + response);
+      console.log('this is users response: ' + days + response);
       response.json(days);
     }).catch(error => console.log(error));
   });
