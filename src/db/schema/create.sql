@@ -1,0 +1,55 @@
+DROP TABLE IF EXISTS available_interviewers CASCADE;
+DROP TABLE IF EXISTS interviews CASCADE;
+DROP TABLE IF EXISTS interviewers CASCADE;
+DROP TABLE IF EXISTS appointments CASCADE;
+DROP TABLE IF EXISTS days CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS expenses CASCADE;
+DROP TABLE IF EXISTS goals CASCADE;
+DROP TABLE IF EXISTS budget CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  riskScore REAL,
+  portfolioReturn REAL,
+  literacy INTEGER,
+  eduScores json,
+  eduIsAnswered json,
+  isNew BOOLEAN
+);
+
+CREATE TABLE expenses (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  amount INTEGER NOT NULL,
+  type VARCHAR(255) NOT NULL,
+  date DATE NOT NULL
+);
+
+CREATE TABLE budget (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  base INTEGER,
+  income INTEGER,
+  c_hous INTEGER,
+  c_tran INTEGER,
+  c_food INTEGER,
+  c_util INTEGER,
+  c_entr INTEGER,
+  c_medi INTEGER,
+  c_debt INTEGER,
+  c_misc INTEGER
+);
+
+CREATE TABLE goals (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  type VARCHAR(255) NOT NULL,
+  amount INTEGER NOT NULL,
+  description TEXT,
+  date DATE NOT NULL
+);
+
