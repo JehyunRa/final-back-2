@@ -71,6 +71,13 @@ module.exports = function application(
       });
   }
 
+  db.query(
+    `
+    SELECT * FROM users 
+    WHERE id = 1
+    `
+  ).then((res) => console.log('this is users 1 response: ' + res));
+
   app.close = function () {
     return db.end();
   };
