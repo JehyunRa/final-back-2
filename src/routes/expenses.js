@@ -47,12 +47,14 @@ module.exports = db => {
 
 
   router.get("/expenses", (request, response) => {
+    console.log(`expenses query starts now!`);
     db.query(
       `
       SELECT * from EXPENSES
         
     `
     ).then(({ rows: appointments }) => {
+      console.log('this is expenses response: ' + response);
       response.json(
         appointments.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
