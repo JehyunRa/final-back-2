@@ -10,7 +10,7 @@
     "reset": "psql -U development -d scheduler_development < ./src/db/schema/create.sql && psql -U development -d scheduler_development < ./src/db/schema/development.sql"
   },
   "engines": {
-    "node": "13.8.0"
+    "node": ">=12"
   },
   "author": "",
   "license": "ISC",
